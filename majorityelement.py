@@ -33,6 +33,23 @@ def majorityElement(nums: list[int]) -> int:
     return candidate
 
 
+def majorityElement(nums: list[int]) -> int:
+    # Using a Hash Map (Frequency Count)
+    # Dictionary to count occurrences of each element
+    counts = {}
+    n = len(nums)
+
+    for num in nums:
+        counts[num] = counts.get(num, 0) + 1
+        # Check if the current element is the majority
+        if counts[num] > n // 2:
+            return num
+
+    # In case we don't return early (guaranteed majority exists)
+    for num, count in counts.items():
+        if count > n // 2:
+            return num
+
 nums = [3, 2, 3]
 print(majorityElement(nums))  # Output: 3
 
